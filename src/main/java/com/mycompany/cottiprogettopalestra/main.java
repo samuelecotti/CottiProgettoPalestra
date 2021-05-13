@@ -9,9 +9,10 @@ package com.mycompany.cottiprogettopalestra;
  *
  * @author cotti
  */
-public class Prenotazione 
+public class main 
 {
-    public static void main(String[] args) {
-        System.out.println("ciao");
+    public static void main(String[] args) 
+    {
+        int x=10;
     }
 }
