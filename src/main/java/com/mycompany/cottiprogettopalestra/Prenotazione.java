@@ -11,7 +11,8 @@ package com.mycompany.cottiprogettopalestra;
  */
 public class Prenotazione 
 {
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         System.out.println("ciao");
     }
 }
