@@ -23,23 +23,23 @@ public class Palestra
     public int aggiungiPrenotazione(Prenotazione prenotazione)
     {
         if (nPrenotazioniPresenti>N_MAX_PRENOTAZIONI)
-            return -1;      //LA CLASSE HA RAGGIUNTO IL NUMERO MASSIMO DI 
+            return -1;      
         elencoPrenotazioni[nPrenotazioniPresenti]=new Prenotazione(prenotazione.getCodice(),prenotazione.getCognome(),prenotazione.getNome(),prenotazione.getAnno(),prenotazione.getMese(),prenotazione.getGiorno(),prenotazione.getOra(),prenotazione.getMinuto(),prenotazione.getOraOccupazione(),prenotazione.getMinutoOccupazione(),prenotazione.getDocce());
         nPrenotazioniPresenti++;
         return 0;
     }
     
-    private void aggiornaPosizioniStudenti(int posizione)
+    private void aggiornaPosizioniprenotazioni(int posizione)
     {
         for (int i=posizione;i<nPrenotazioniPresenti-1;i++)
         {
             elencoPrenotazioni[i]=elencoPrenotazioni[i+1];
         }
-        elencoPrenotazioni[nPrenotazioniPresenti-1]=null;      //Affinchè se elimino l'ultimo studente, in ultima posizione vi sia null
+        elencoPrenotazioni[nPrenotazioniPresenti-1]=null;      
         nPrenotazioniPresenti--;        
     }
     
-    public int rimuoviStudente(long matricola)
+    public int rimuoviPrenotazione(long matricola)
     {
         int posizioneStudente;
         for (int i=0;i<nPrenotazioniPresenti;i++)   //cerco lo studente
@@ -49,7 +49,7 @@ public class Palestra
                 if (elencoPrenotazioni[i].getCodice()==matricola)
                 {
                     posizioneStudente=i;
-                    aggiornaPosizioniStudenti(i);
+                    aggiornaPosizioniprenotazioni(i);
                     return 0;
                 }
                     
@@ -57,6 +57,8 @@ public class Palestra
         }
         return -1;
     }
+    
+    
     
     public String toString()
     {
