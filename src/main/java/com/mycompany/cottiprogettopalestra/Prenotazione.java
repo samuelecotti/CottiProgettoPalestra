@@ -94,6 +94,27 @@ public class Prenotazione
         return docce;
     }
 
+    public void setCodice(int codice) {
+        this.codice = codice;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public void setDocce(boolean docce) {
+        this.docce = docce;
+    }
+    
+    public void setGiorno(boolean docce) {
+        this.docce = docce;
+    }
+    
+
     @Override
     public String toString()
     {

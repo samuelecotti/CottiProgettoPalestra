@@ -5,6 +5,8 @@
  */
 package com.mycompany.cottiprogettopalestra;
 
+import eccezioni.EccezionePosizioneNonValida;
+import eccezioni.EccezionePosizioneNonVuota;
 import java.util.Scanner;
 
 /**
@@ -41,17 +43,15 @@ public class main
                 }
                 case 1:
                 {
-                    Prenotazione p1=new Prenotazione(12334,"Samuele","Cotti",2021,5,21,16,50,2,0,true);
-                    Prenotazione p2=new Prenotazione(13333334,"Samuele","Cotti",2021,5,21,16,50,2,0,true);
+                    Prenotazione p1=new Prenotazione(1234,"Samuele","Cotti",2021,5,21,16,30,2,0,true);
                     
                     b.aggiungiPrenotazione(p1);
-                    b.aggiungiPrenotazione(p2);
                     
                     System.out.println(b.toString());
                     
-                    System.out.println("premi un pulsante...");
-                    tastiera.nextLine();
                     break;
+                    
+                    
                 }
                 case 2:
                 {

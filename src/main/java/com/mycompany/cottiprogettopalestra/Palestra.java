@@ -43,14 +43,14 @@ public class Palestra
     
     public int rimuoviPrenotazione(long matricola)
     {
-        int posizioneStudente;
+        int posizionePrenotazione;
         for (int i=0;i<nPrenotazioniPresenti;i++)   //cerco lo studente
         {
             if (elencoPrenotazioni[i]!=null)
             {
                 if (elencoPrenotazioni[i].getCodice()==matricola)
                 {
-                    posizioneStudente=i;
+                    posizionePrenotazione=i;
                     aggiornaPosizioniprenotazioni(i);
                     return 0;
                 }
