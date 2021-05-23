@@ -13,7 +13,7 @@ import java.time.*;
  */
 public class Prenotazione 
 {
-    int codice;
+    int codice,id;
     String nome;
     String cognome;
     LocalDateTime dataOra;
@@ -22,6 +22,7 @@ public class Prenotazione
     
     public Prenotazione(int codice,String nome,String cognome, int anno,int mese,int giorno,int ora,int minuto,int oraOccupazione,int minutoOccupazione,boolean docce)
     {
+        
         this.codice=codice;
         this.nome=nome;
         this.cognome=cognome;
@@ -32,13 +33,27 @@ public class Prenotazione
     
     public Prenotazione(Prenotazione p)
     {
-        p.codice=getCodice();
-        p.nome=getNome();
-        p.dataOra=dataOra;
-        p.tempoOccupazione=tempoOccupazione;
-        p.docce=getDocce();
+        
+        codice=p.getCodice();
+        nome=p.getNome();
+        cognome=p.getCognome();
+        dataOra=p.getDataOra();
+        tempoOccupazione=p.getTempoOccupazione();
+        docce=p.getDocce();
     }
 
+    public int getId() 
+    {
+        return id;
+    }
+
+    public void setId(int id) 
+    {
+        this.id = id;
+    }
+
+    
+    
     public int getCodice() 
     {
         return codice;
@@ -54,40 +69,14 @@ public class Prenotazione
         return cognome;
     }
 
-    public int getGiorno()
-    {
-        return dataOra.getDayOfMonth();
-    }
-    
-    public int getMese()
-    {
-        return dataOra.getMonthValue();
-    }
-    
-    public int getAnno()
-    {
-        return dataOra.getYear();
-    }
-    
-    public int getOra()
-    {
-        return dataOra.getHour();
-    }
-    
-    public int getMinuto()
-    {
-        return dataOra.getMinute();
+    public LocalDateTime getDataOra() {
+        return dataOra;
     }
 
-    public int getOraOccupazione()
-    {
-        return tempoOccupazione.getHour();
+    public LocalTime getTempoOccupazione() {
+        return tempoOccupazione;
     }
     
-    public int getMinutoOccupazione()
-    {
-        return tempoOccupazione.getMinute();
-    }
 
     public boolean getDocce() 
     {
@@ -106,13 +95,24 @@ public class Prenotazione
         this.cognome = cognome;
     }
 
-    public void setDocce(boolean docce) {
+    public void setDataOra(int giorno,int mese,int anno,int ora,int minuto) 
+    {
+        dataOra=LocalDateTime.of(giorno, mese, anno, ora, minuto);
+    }
+
+    public void setTempoOccupazione(int ora,int minuto) 
+    {
+        tempoOccupazione=LocalTime.of(ora, minuto);
+    }
+    
+    
+
+    public void setDocce(boolean docce)
+    {
         this.docce = docce;
     }
     
-    public void setGiorno(boolean docce) {
-        this.docce = docce;
-    }
+    
     
 
     @Override

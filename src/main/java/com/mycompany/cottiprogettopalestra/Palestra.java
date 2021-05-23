@@ -5,7 +5,13 @@
  */
 package com.mycompany.cottiprogettopalestra;
 
+import eccezioni.FileException;
+import file.TextFile;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -22,13 +28,43 @@ public class Palestra
         elencoPrenotazioni=new Prenotazione[N_MAX_PRENOTAZIONI];
     }
     
+    public int getNumPrenotazioni()
+    {
+        int contatore=0;
+   
+        for(int i=0;i<N_MAX_PRENOTAZIONI;i++)
+        {
+            if(elencoPrenotazioni[i]!=null)
+                contatore++;
+        }
+        return contatore;
+    }
+
+    public int getN_MAX_PRENOTAZIONI() 
+    {
+        return N_MAX_PRENOTAZIONI;
+    }
+
+    public int getnPrenotazioniPresenti() 
+    {
+        return nPrenotazioniPresenti;
+    }
+    
+    public Prenotazione getPrenotazionePosizione(int posizione)
+    {
+        return elencoPrenotazioni[posizione];
+    }
+    
+    public int getCodice(int posizione)
+    {
+         return elencoPrenotazioni[posizione].getCodice();  
+    }
+    
     public int aggiungiPrenotazione(Prenotazione prenotazione)
     {
-        if (nPrenotazioniPresenti>N_MAX_PRENOTAZIONI)
-            return -1;      
-        elencoPrenotazioni[nPrenotazioniPresenti]=new Prenotazione(prenotazione.getCodice(),prenotazione.getCognome(),prenotazione.getNome(),prenotazione.getAnno(),prenotazione.getMese(),prenotazione.getGiorno(),prenotazione.getOra(),prenotazione.getMinuto(),prenotazione.getOraOccupazione(),prenotazione.getMinutoOccupazione(),prenotazione.getDocce());
-        nPrenotazioniPresenti++;
-        return 0;
+        elencoPrenotazioni[nPrenotazioniPresenti]=new Prenotazione(prenotazione);
+            nPrenotazioniPresenti++;
+            return 0;
     }
     
     private void aggiornaPosizioniprenotazioni(int posizione)
@@ -61,6 +97,31 @@ public class Palestra
     }
     
     
+    public Prenotazione[] prenotazioniGiorno(LocalDateTime data)
+    {
+        Prenotazione[] prenotazioniGiorno=new Prenotazione[getNumPrenotazioni()];
+        Prenotazione p;
+        int x=0;
+        int c=0;
+        
+        for(int i=0;i<getNumPrenotazioni();i++)
+        {
+            if(elencoPrenotazioni[i].getDataOra().isEqual(data)==true)
+            {
+                p=elencoPrenotazioni[i];
+                prenotazioniGiorno[x]=p;
+                x++;
+            }
+            else if(elencoPrenotazioni[i].getDataOra().isEqual(data)==false)
+            {
+                c++; 
+            }
+        }
+        
+        return prenotazioniGiorno;
+          
+    }
+    
     
     public String toString()
     {
@@ -78,4 +139,30 @@ public class Palestra
         }
         return s;
     }
+    
+    
+    public void salvaRevisione(String nomeFile) throws IOException, FileException
+    {
+        TextFile f1=new TextFile(nomeFile,'W');
+        Prenotazione p;
+        for(int i=0;i<nPrenotazioniPresenti;i++)
+            {
+               p=getPrenotazionePosizione(i);
+                if(p!=null)
+                {
+                    f1.toFile(p.getCodice()+";"+p.getNome()+";"+p.getCognome()+";"+p.getDataOra()+";"+p.getTempoOccupazione()+";"+p.getDocce()+";");
+                }
+            }
+        f1.close();
+    }
+    
+    public void salvaRevisioneBin(String nomeFile) throws IOException, FileException
+    {
+        FileOutputStream f1=new FileOutputStream(nomeFile);
+        ObjectOutputStream writer=new ObjectOutputStream(f1);
+        writer.writeObject(this);
+        writer.flush();
+        writer.close();
+    }
+    
 }
