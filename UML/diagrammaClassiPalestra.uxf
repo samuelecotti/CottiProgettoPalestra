@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>260</y>
+      <w>640</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>Prenotazione
+--
+-codice:int
+-nome:String
+-cognome:String
+-dataOra:LocalDateTime
+-tempoPrenotazione:LocalTime
+-docce:boolean
+-
++Prenotazione(in int codice,in String nome,in String cognome,in int giorno,in int mese,in int anno
+in int ora,in int minuto,in int docce)
++getCodice():int
++getCognome():String
++getNome():String
++getCognome():String
++getData():LocalDate
++getOra():LocalTime
++getTempoOccupazione():LocalTime
++getDocce():String
++setCodice(in int codice):void
++setNome(in String nome):void
++setCognome(in String cognome):void
++setData(in int giorno,int mese,int anno):void
++setOra(in int ora,int minuto):void
++setTempoOccupazione(in int ora,int minuto):void
++setDocce(in String docce):void
++toString():String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>830</x>
+      <y>450</y>
+      <w>560</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+elencoPrenotazioni[]:Prenotazione
+0..N_MAX_PRENOTAZIONI</panel_attributes>
+    <additional_attributes>540.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1370</x>
+      <y>440</y>
+      <w>670</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>Palestra
+--
+-N_MAX_PRENOTAZIONI:int
+-nPrenotazioniPresenti:int
+--
++getNumPrenotazioni()
++getN_MAX_PRENOTAZIONI()
++getnPrenotazioniPresenti() 
++getPrenotazionePosizione(in int posizione):Prenotazione
++getCodice(in int posizione):int
++aggiungiPrenotazione(in Prenotazione prenotazione):int
++aggiornaPosizioniprenotazioni(in int posizione):void
++rimuoviPrenotazione(in long matricola):int
++prenotazioniGiorno(LocalDate data):Prenotazioni[]
++PrenotazioniOrdineCronologico (in String nome,String cognome):Prenotazione[]
++toString():String
++salvaRevisione(String nomeFile):void
++salvaRevisioneBin(String nomeFile):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

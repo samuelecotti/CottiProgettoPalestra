@@ -23,6 +23,9 @@ public class Menu {
             this.elencoVoci[i]=elencoVoci[i];
     }
     
+    /**
+     *
+     */
     public void visualizzaMenu()
     {
         System.out.println("Menu: ");

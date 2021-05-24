@@ -17,6 +17,12 @@ public class TextFile
     private BufferedReader reader;
     private BufferedWriter writer;
     
+    /**
+     *
+     * @param nomeFile
+     * @param mode
+     * @throws IOException
+     */
     public TextFile(String nomeFile, char mode) throws IOException
     {
         this.mode='R';
@@ -28,6 +34,13 @@ public class TextFile
             writer=new BufferedWriter(new FileWriter(nomeFile));
     }
     
+    /**
+     *
+     * @param nomeFile
+     * @param mode
+     * @param append
+     * @throws IOException
+     */
     public TextFile(String nomeFile, char mode, boolean append) throws IOException
     {
         this.mode='R';
@@ -59,6 +72,10 @@ public class TextFile
         return s;
     }
     
+    /**
+     *
+     * @throws IOException
+     */
     public void close() throws IOException
     {
         if(mode=='R')
